@@ -11,7 +11,7 @@
 }
 
 .mallchatcolor {
-  font-family: 'mallchatcolor' !important;
+  font-family: 'mallchatcolor', sans-serif !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;

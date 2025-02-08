@@ -1,0 +1,43 @@
+@import "base";
+@import "scrollbar";
+@import "@/assets/iconfont/index.css";
+@import "@/assets/iconfont/index-color.css";
+
+#app {
+  min-height: 100vh;
+  font-weight: normal;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.ellipsis-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+}
+
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+}
+
+.icon-spin {
+  animation: icon-loading 1s infinite cubic-bezier(0, 0, 1, 1);
+}
+
+@keyframes icon-loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

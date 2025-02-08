@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@unocss/reset": "^65.4.2",
+    "alova": "^3.2.8",
     "element-plus": "^2.9.3",
     "pinia": "^2.3.0",
     "pinia-plugin-persistedstate": "^4.2.0",

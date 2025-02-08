@@ -7,18 +7,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: () => import('@/views/Home/HomeView.vue'),
+      name: 'HomeLayout',
+      component: () => import('@/views/Home/HomeLayout.vue'),
       children: [
         {
           path: '',
           name: 'HomeChat',
-          component: () => import('@/views/Home/Chat/HomeChatView.vue'),
+          component: () => import('@/views/Home/Chat/HomeChat.vue'),
         },
         {
           path: 'contact',
           name: 'HomeContact',
-          component: () => import('@/views/Home/Contact/HomeContactView.vue'),
+          component: () => import('@/views/Home/Contact/HomeContact.vue'),
         },
       ],
     },
