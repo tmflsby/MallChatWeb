@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SideBar from '@/views/Home/Chat/components/SideBar/SideBar.vue'
+import ChatBox from '@/views/Home/Chat/components/ChatBox/ChatBox.vue'
+</script>
 
 <template>
-  <div class="home-chat-view"></div>
+  <SideBar />
+  <ChatBox />
 </template>
 
 <style scoped></style>

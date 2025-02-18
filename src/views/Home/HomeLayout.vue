@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { RouterView } from 'vue-router'
+import ToolBar from '@/views/Home/components/ToolBar/ToolBar.vue'
 
 const year = ref(new Date().getFullYear())
 </script>
@@ -9,7 +11,10 @@ const year = ref(new Date().getFullYear())
     <div
       class="wrapper pos-relative flex flex-row items-stretch w-80vw h-83vh m-y-0 m-x-auto b-rd-16px"
       style="color: var(--font-main); background-color: var(--background-wrapper)"
-    ></div>
+    >
+      <ToolBar />
+      <RouterView />
+    </div>
     <footer
       class="footer pos-absolute bottom-0 left-0 w-full p-12px text-12px text-center"
       style="color: var(--font-main)"

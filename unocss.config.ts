@@ -21,7 +21,8 @@ export default defineConfig({
     'flex-ac': 'flex justify-around items-center',
     'flex-bc': 'flex justify-between items-center',
     'flex-cc': 'flex justify-center items-center',
-    'flex-sc': 'flex justify-flex-start items-center',
+    'flex-sc': 'flex justify-start items-center',
+    'flex-ec': 'flex justify-end items-center',
   },
   theme: {},
 })
