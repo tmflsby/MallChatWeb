@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { isNumber } from '@/utils'
 
 interface Props {
   /** 头像地址 */
@@ -16,14 +17,14 @@ interface Props {
   online?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
-  src: '',
-  size: 40,
-  shape: 'circle',
-  bordered: false,
-  showStatus: false,
-  online: true,
-})
+const {
+  src = '',
+  size = 40,
+  shape = 'circle',
+  bordered = false,
+  showStatus = false,
+  online = true,
+} = defineProps<Props>()
 
 const hasError = ref(false)
 </script>
@@ -42,8 +43,8 @@ const hasError = ref(false)
       { offline: !online },
     ]"
     :style="{
-      width: typeof size === 'number' ? size + 'px' : size,
-      height: typeof size === 'number' ? size + 'px' : size,
+      width: isNumber(size) ? size + 'px' : size,
+      height: isNumber(size) ? size + 'px' : size,
     }"
   >
     <template v-if="src">

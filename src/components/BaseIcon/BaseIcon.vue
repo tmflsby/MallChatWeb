@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, type CSSProperties } from 'vue'
+import { isNumber } from '@/utils'
 
 interface Props {
   /** 图标名称 */
@@ -14,9 +15,7 @@ interface Props {
   colorful?: boolean
 }
 
-const { icon, size, rotate, spin, colorful } = withDefaults(defineProps<Props>(), {
-  size: 16,
-})
+const { icon, size = 16, rotate, spin, colorful } = defineProps<Props>()
 
 const iconCls = computed(() => {
   return [
@@ -32,7 +31,7 @@ const iconCls = computed(() => {
 const innerStyle = computed(() => {
   const styles: CSSProperties = {}
   if (size) {
-    styles.fontSize = typeof size === 'number' ? `${size}px` : size
+    styles.fontSize = isNumber(size) ? `${size}px` : size
   }
   if (rotate) {
     styles.transform = `rotate(${rotate}deg)`

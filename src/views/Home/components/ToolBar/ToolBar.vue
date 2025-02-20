@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useUserStore } from '@/stores/user.ts'
+import { useGlobalStore } from '@/stores/global.ts'
 import { judgeClient } from '@/utils/detectDevice.ts'
+
+const userStore = useUserStore()
+const avatar = computed(() => userStore?.userInfo.avatar)
+
+const globalStore = useGlobalStore()
+const unReadMark = computed(() => globalStore.unReadMark)
 
 const client = judgeClient()
 const isPc = computed(() => client === 'PC')
@@ -30,17 +38,25 @@ const menuList = [
     class="side-toolbar flex flex-col items-center w-80px p-x-0 p-y-20px select-none"
     style="color: var(--font-main)"
   >
-    <BaseAvatar :src="''" :size="isPc ? 50 : 40" />
+    <BaseAvatar :src="userStore.isSign ? avatar : ''" :size="isPc ? 50 : 40" />
     <div class="flex flex-col gap-y-8px mt-16px">
       <!--   会话   -->
       <router-link exactActiveClass="tool-icon-active" to="/">
-        <el-badge :value="12" :hidden="false" :max="99">
+        <el-badge
+          :value="unReadMark.newMsgUnreadCount"
+          :hidden="unReadMark.newMsgUnreadCount === 0"
+          :max="99"
+        >
           <BaseIcon class="flex-cc w-50px h50px" icon="chat" :size="28" />
         </el-badge>
       </router-link>
       <!--   联系人   -->
       <router-link exactActiveClass="tool-icon-active" to="/contact">
-        <el-badge :value="10" :hidden="false" :max="99">
+        <el-badge
+          :value="unReadMark.newFriendUnreadCount"
+          :hidden="unReadMark.newFriendUnreadCount === 0"
+          :max="99"
+        >
           <BaseIcon class="flex-cc w-50px h50px" icon="group" :size="28" />
         </el-badge>
       </router-link>
