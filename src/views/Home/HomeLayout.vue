@@ -11,6 +11,7 @@ const year = ref(new Date().getFullYear())
     <div
       class="wrapper pos-relative flex flex-row items-stretch w-80vw h-83vh m-y-0 m-x-auto b-rd-16px"
       style="color: var(--font-main); background-color: var(--background-wrapper)"
+      ref="container"
     >
       <ToolBar />
       <RouterView />
@@ -21,6 +22,7 @@ const year = ref(new Date().getFullYear())
     >
       <span>Copyright ©{{ year }}</span>
     </footer>
+    <LoginBox />
   </main>
 </template>
 

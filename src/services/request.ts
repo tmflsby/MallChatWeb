@@ -22,7 +22,7 @@ const getToken = () => {
 
 export const computedToken = getToken()
 
-export const alovaInstance = createAlova({
+export const alovaIns = createAlova({
   baseURL: '',
   statesHook: VueHook,
   requestAdapter: adapterFetch(),

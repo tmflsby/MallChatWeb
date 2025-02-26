@@ -7,7 +7,7 @@ import App from '@/App.vue'
 
 const app = createApp(App)
 
-setupPlugins()
+setupPlugins(app)
 setupStore(app)
 setupRouter(app)
 

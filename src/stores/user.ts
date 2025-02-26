@@ -11,6 +11,7 @@ export const useUserStore = defineStore('user', () => {
   try {
     localUserInfo = JSON.parse(localStorage.getItem('USER_INFO') || '{}')
   } catch (error) {
+    console.error(error)
     localUserInfo = {}
   }
 

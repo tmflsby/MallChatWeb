@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useUserStore } from '@/stores/user.ts'
 import { useGlobalStore } from '@/stores/global.ts'
 import { judgeClient } from '@/utils/detectDevice.ts'
@@ -12,6 +12,9 @@ const unReadMark = computed(() => globalStore.unReadMark)
 
 const client = judgeClient()
 const isPc = computed(() => client === 'PC')
+
+const visible = ref(false)
+const showSettingBox = () => (visible.value = true)
 
 const menuList = [
   {
@@ -38,28 +41,32 @@ const menuList = [
     class="side-toolbar flex flex-col items-center w-80px p-x-0 p-y-20px select-none"
     style="color: var(--font-main)"
   >
-    <BaseAvatar :src="userStore.isSign ? avatar : ''" :size="isPc ? 50 : 40" />
+    <BaseAvatar
+      :src="userStore.isSign ? avatar : ''"
+      :size="isPc ? 50 : 40"
+      v-login="showSettingBox"
+    />
     <div class="flex flex-col gap-y-8px mt-16px">
       <!--   会话   -->
-      <router-link exactActiveClass="tool-icon-active" to="/">
-        <el-badge
+      <RouterLink exactActiveClass="tool-icon-active" to="/">
+        <ElBadge
           :value="unReadMark.newMsgUnreadCount"
           :hidden="unReadMark.newMsgUnreadCount === 0"
           :max="99"
         >
           <BaseIcon class="flex-cc w-50px h50px" icon="chat" :size="28" />
-        </el-badge>
-      </router-link>
+        </ElBadge>
+      </RouterLink>
       <!--   联系人   -->
-      <router-link exactActiveClass="tool-icon-active" to="/contact">
-        <el-badge
+      <RouterLink exactActiveClass="tool-icon-active" to="/contact">
+        <ElBadge
           :value="unReadMark.newFriendUnreadCount"
           :hidden="unReadMark.newFriendUnreadCount === 0"
           :max="99"
         >
           <BaseIcon class="flex-cc w-50px h50px" icon="group" :size="28" />
-        </el-badge>
-      </router-link>
+        </ElBadge>
+      </RouterLink>
     </div>
     <div class="menu flex-ec flex-col flex-1">
       <a

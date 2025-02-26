@@ -18,17 +18,16 @@ import type {
   UserInfoType,
   UserItem,
 } from '@/services/types'
-import { alovaInstance } from './request'
-import urls from './urls'
+import { alovaIns } from '@/services/request.ts'
+import urls from '@/services/urls.ts'
 
 type RequestConfig = Record<string, unknown>
 type Params = Record<string, unknown>
 
-const getRequest = <T>(url: string, config?: RequestConfig) => alovaInstance.Get<T>(url, config)
-const postRequest = <T>(url: string, params?: Params) => alovaInstance.Post<T, unknown>(url, params)
-const putRequest = <T>(url: string, params?: Params) => alovaInstance.Put<T, unknown>(url, params)
-const deleteRequest = <T>(url: string, params?: Params) =>
-  alovaInstance.Delete<T, unknown>(url, params)
+const getRequest = <T>(url: string, config?: RequestConfig) => alovaIns.Get<T>(url, config)
+const postRequest = <T>(url: string, params?: Params) => alovaIns.Post<T, unknown>(url, params)
+const putRequest = <T>(url: string, params?: Params) => alovaIns.Put<T, unknown>(url, params)
+const deleteRequest = <T>(url: string, params?: Params) => alovaIns.Delete<T, unknown>(url, params)
 
 export default {
   /** 获取群成员列表 */
@@ -47,9 +46,10 @@ export default {
     postRequest<CacheBadgeItem[]>(urls.getBadgesBatch, { reqList: badges }),
   /** 获取消息列表 */
   getMsgList: (params?: Params) => getRequest<ListResponse<MessageType>>(urls.getMsgList, params),
-  /** 发送��息 */
+  /** 发送消息 */
   sendMsg: (data?: MessageReq) => postRequest<MessageType>(urls.sendMsg, data),
   /** 标记消息，点赞等 */
+  markMsg: (data?: MarkMsgReq) => alovaIns.Put<void>(urls.markMsg, data),
   /** 获取用户详细信息 */
   getUserDetail: () => getRequest<UserInfoType>(urls.getUserInfoDetail, {}),
   /** 获取勋章列表 */
@@ -119,19 +119,19 @@ export default {
     getRequest<SessionItem>(urls.sessionDetailWithFriends, { params }),
   /** 添加群管理 */
   addAdmin: ({ roomId, uidList }: { roomId: number; uidList: number[] }) =>
-    putRequest<Boolean>(urls.addAdmin, {
+    putRequest<boolean>(urls.addAdmin, {
       roomId,
       uidList,
     }),
   /** 撤销群管理 */
   revokeAdmin: ({ roomId, uidList }: { roomId: number; uidList: number[] }) =>
-    deleteRequest<Boolean>(urls.revokeAdmin, {
+    deleteRequest<boolean>(urls.revokeAdmin, {
       roomId,
       uidList,
     }),
   /** 退群 */
   exitGroup: ({ roomId }: { roomId: number }) =>
-    deleteRequest<Boolean>(urls.exitGroup, {
+    deleteRequest<boolean>(urls.exitGroup, {
       roomId,
     }),
 }

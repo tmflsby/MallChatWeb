@@ -10,7 +10,14 @@ declare module 'vue' {
     BaseAvatar: typeof import('./components/BaseAvatar/BaseAvatar.vue')['default']
     BaseIcon: typeof import('./components/BaseIcon/BaseIcon.vue')['default']
     ElBadge: typeof import('element-plus/es')['ElBadge']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    IEpSuccessFilled: typeof import('~icons/ep/success-filled')['default']
+    LoginBox: typeof import('./components/LoginBox/LoginBox.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
